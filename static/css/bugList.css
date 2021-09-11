@@ -1,0 +1,9 @@
+.bugList{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr)
+}
+
+.label{
+padding: 10px;
+border: white 2px solid;
+}

@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;300;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
+
+body {
+    margin: 0 auto;
+    color: white;
+    font-family: 'Urbanist', sans-serif;
+}
+
+
+
+.wrapper {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "contentOne contentTwo";
+
+}
+
+
+.contentOne {
+    
+    grid-area: contentOne;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: #d94881 5px solid;
+
+}
+
+.contentTwo {
+    background: url("../images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    grid-area: contentTwo;
+    background-color: burlywood;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    margin: 5px;
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+}
+
+#title {
+    color: #d94881;
+    margin: 0;
+    padding: 0;
+    font-size: 60px;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 900;
+    /* height: 1.2em; */
+}
+
+#subtitle {
+    margin: 0 0 30px 0;
+    padding: 0;
+    font-family: 'Urbanist', sans-serif;
+
+}
+
+.buttonCollection {
+    display: flex;
+    flex-direction: column;
+}
+
+.standardFont{
+    font-family: 'Urbanist', sans-serif;
+    font-size: 50px;
+    font-weight: 600;
+    color: #d94881;
+}
+
+.mainButtons {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 50px;
+    font-weight: 600;
+    color: inherit;
+    text-decoration: underline 0.15em;
+    text-decoration-color: rgba(0, 0, 0, 0);
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 300ms, text-underline-offset 300ms;
+    padding-bottom: 10px;
+}
+
+.mainButtons:hover {
+    color: #d94881;
+    text-decoration-color: #d94881;
+    text-underline-offset: 0.2em;
+}
+
+.background{
+    background: rgb(59, 59, 57);
+}
+
+.linkSelect{
+    color: #d94881;
+    text-decoration-color: #d94881;
+    text-underline-offset: 0.2em;
+}
