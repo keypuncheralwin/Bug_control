@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 import os
 import psycopg2
+import bcrypt
 
 from models.query import sign_up_user, check_email, get_password_hash
 
