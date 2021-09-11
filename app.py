@@ -12,9 +12,10 @@ app.config['SECRET_KEY'] = SECRET_KEY
 def index():
     conn = psycopg2.connect(DB_URL)
     cur = conn.cursor()
-    cur.execute('SELECT 1', []) # Query to check that the DB connected
+    cur.execute('SELECT * FROM users') # Query to check that the DB connected
+    results = cur.fetchall()
     conn.close()
-    return 'Hello, world Alwin!'
+    return f'Hello, world Alwin! {results}'
 
 if __name__ == "__main__":
     app.run(debug=True)
