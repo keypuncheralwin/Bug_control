@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="contentOne">
+    <div class="containerOne">
+        <img id="logo" src="../static/images/bug.png" alt="logo">
+        {% if not name == 'Guest' %}
+        <h1 id="title">Hey {{name}}.</h1>
+        <h2 id="subtitle">Let's squash some bugs!</h2>
+        {% else %}
+        <h1 id="title">Hello Guest.</h1>
+        <h2 id="subtitle">As a guest you cannot make changes to the databse</h2>
+        {% endif %}
+        <div class="buttonCollection">
+            <a class="mainButtons" href="/bugs_list">Current Bugs</a>
+            <a class="mainButtons" href="/bugs_list">Dashboard</a>
+            <a class="mainButtons" href="/report">Report a bug</a>
+            <a class="mainButtons" href="/logout">Logout</a>
+        </div>
+    </div>
+</div>
+<div class="contentTwo background">
+    <div class="container">
+        {% if not name == 'Guest' %}
+        <form action="/edit/{{id}}">
+            {% else %}
+            <form action="/bugs_list">
+                {% endif %}
+                <label class="standardFont" for="title">Title</label>
+                <input type="text" name="title" value="{{title}}" readonly>
+
+                <label class="standardFont" for="description">Description</label>
+                <textarea readonly type="text" rows="4" name="description">{{description}}</textarea>
+
+                <label class="standardFont" for="priority">Priority</label>
+                <input type="text" name="title" value="{{priority}}" readonly>
+
+                <label class="standardFont" for="Date">Last updated On</label>
+                <input type="text" name="title" value="{{date}}" readonly>
+
+                <label class="standardFont" for="user">Last updated by</label>
+                <input type="text" name="user" value="{{user_name}}" readonly>
+
+                {% if not name == 'Guest' %}
+                <input class="standardFont" type="submit" value="Edit this bug">
+                {% else %}
+                <input class="standardFont" type="submit" value="Back">
+                {% endif %}
+            </form>
+
+
+    </div>
+</div>
+{% endblock %}

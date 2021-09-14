@@ -1,14 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;300;500;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
+* {
+    box-sizing: border-box;
+  }
 
 body {
     margin: 0 auto;
     color: white;
     font-family: 'Urbanist', sans-serif;
+    
 }
 
-
+a{
+    text-decoration: none;
+    color: inherit;
+}
 
 .wrapper {
     display: grid;
@@ -46,9 +53,10 @@ body {
     align-items: center;
 }
 
-.container{
-    margin: 5px;
+.containerOne{
+    margin: 0 10%;
 }
+
 
 #logo {
     width: 100px;
@@ -111,3 +119,4 @@ body {
     text-decoration-color: #d94881;
     text-underline-offset: 0.2em;
 }
+

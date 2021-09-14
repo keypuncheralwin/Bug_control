@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/bugList.css">
     <link rel="stylesheet" href="../static/css/forms.css">
+    <link rel="stylesheet" href="../static/css/media.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +14,18 @@
 
 <body>
     <div class="wrapper">
+        <h3 id="hiddenMenu">Open Menu</h2>
         {% block content %}
         <div class="contentOne">
             
-            <div class="container">
+            <div class="containerOne">
                 <img id="logo" src="../static/images/bug.png" alt="logo">
                 <h1 id="title">Bug Control.</h1>
                 <h3 id="subtitle">A simple bug tracking app</h3>
                 <div class="buttonCollection">
                     <a class="mainButtons" href="/sign">Sign Up</a>
                     <a class="mainButtons" href="/login">Login</a>
-                    <a class="mainButtons" href="/guest">Browse as Guest</a>
+                    <a class="mainButtons" href="/bugs_list">Guest</a>
                 </div>
             </div>
         </div>

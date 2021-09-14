@@ -1,9 +1,29 @@
+
+
+
 .bugList{
     display: grid;
-    grid-template-columns: repeat(7, 1fr)
+    grid-template-columns: 0.5fr 1fr 1fr 2fr 0.5fr 1.2fr 1fr;
+    margin: 0 2%;
+
 }
+
 
 .label{
 padding: 10px;
 border: white 2px solid;
+
+/* text-align: left; */
+}
+
+.center{
+    text-align: center;
+}
+
+.addBorder{
+    border: white 2px solid;
+}
+
+.noBorder{
+    border: none;
 }

@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="contentOne">
+    <div class="containerOne">
+        <img id="logo" src="../static/images/bug.png" alt="logo">
+        {% if not name == 'Guest' %}
+        <h1 id="title">Hey {{name}}.</h1>
+        <h2 id="subtitle">Let's squash some bugs!</h2>
+        {% else %}
+        <h1 id="title">Hello Guest.</h1>
+        <h2 id="subtitle">As a guest you cannot make changes to the databse</h2>
+        {% endif %}
+        <div class="buttonCollection">
+            <a class="mainButtons" href="/bugs_list">Current Bugs</a>
+            <a class="mainButtons" href="/bugs_list">Dashboard</a>
+            <a class="mainButtons" href="/report">Report a bug</a>
+            <a class="mainButtons" href="/logout">Logout</a>
+        </div>
+    </div>
+</div>
+<div class="contentTwo background">
+    <div class="container">
+        <form action="/edit_action" method="POST">
+            <label class="standardFont" for="title">Title</label>
+            <input type="text" name="title" value="{{title}}">
+
+            <label class="standardFont" for="description">Description</label>
+            <textarea type="text" rows="4" name="description">{{description}}</textarea>
+        
+            <label class="standardFont" for="priority">Priority</label>
+            <select name="priority" value="{{priority}}">
+                <option value="low">Low</option>
+                <option value="Moderate">Moderate</option>
+                <option value="High">High</option>
+              </select>
+            <label class="standardFont" for="Date">Updated On</label>
+            <input type="date" name="date" value="{{today}}">
+
+            <input type="hidden" name="bug_id" value="{{id}}">
+          
+            <input class="standardFont" type="submit" value="Update Bug">
+          </form>
+
+
+    </div>
+</div>
+{% endblock %}
