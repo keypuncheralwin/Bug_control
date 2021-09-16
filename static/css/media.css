@@ -1,7 +1,11 @@
-#hiddenMenu {
+.burger {
     display: none;
 
+
 }
+
+
+
 
 @media(max-width: 950px) {
     .wrapper {
@@ -18,23 +22,37 @@
         align-items: center;
         border-right: none;
         border-bottom: #d94881 5px solid;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        
     }
 
     .contentTwo {
         height: 100vh;
-        display: block;
-        overflow-x: auto;
-        overflow-y: auto;
+        /* overflow: auto; */
     }
 
     .containerOne {
         text-align: center;
     }
 
-    .container {
+    .containerList {
+        height: 100vh;
+        display: block;
+        text-align: center;
+        overflow-x: auto;
+        overflow-y: auto;
         padding-bottom: 50px;
 
 
+    }
+
+    .containerDash{
+        padding: 20px;
+        height: 100vh;
+        width: 100vw;
+        
     }
 
     #title {
@@ -52,29 +70,99 @@
 
     }
 
-    .standardFont {
+    .standardFont, .white {
 
         font-size: 30px;
     }
 
-    .mainButtons {
-        display: none;
-    }
-
-    #hiddenMenu {
-        width: 150px;
-        color: #d94881;
-        background-color: black;
-        border: #d94881 2px solid;
+    .burger {
         display: block;
-        position: fixed;
-  left: 50%;
-  bottom: 20px;
-  transform: translate(-50%, -50%);
-  margin: 0 auto;
+        z-index: 1;
     }
 
+    .menu-btn {
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-color: #d94881;
+        border-radius: 50%;
+        position: fixed;
+        left: 50%;
+        top: 165px;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
 
+    .menu-btn span,
+    .menu-btn span::before,
+    .menu-btn span::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -1px;
+        width: 20px;
+        height: 2px;
+        background-color: #222;
+    }
+
+    .menu-btn span::before,
+    .menu-btn span::after {
+        content: '';
+        display: block;
+        transition: 0.2s;
+    }
+
+    .menu-btn span::before {
+        transform: translateY(-5px);
+    }
+
+    .menu-btn span::after {
+        transform: translateY(5px);
+    }
+
+    .menu-btn_active span {
+        height: 0;
+    }
+
+    .menu-btn_active span:before {
+        transform: rotate(45deg);
+    }
+
+    .menu-btn_active span:after {
+        transform: rotate(-45deg);
+    }
+
+    .buttonCollection {
+        display: none;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.921);
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: 170px;
+        text-align: center;
+        height: 100vh;
+        
+    }
+
+    .showMenu {
+        display: flex;
+        flex-direction: column;
+        padding-top: 30%;
+
+    }
+
+    /* .ontainerDash{
+        height: 100vh;
+    } */
+
+    /* canvas {
+        
+        width: 500px;
+      } */
+      
 
 
 

@@ -24,7 +24,7 @@ def get_password_hash(email):
   return password_hash 
 
 def all_bugs():
-  items = sql_select("SELECT b.*, u.name FROM bugs b LEFT JOIN users u ON u.id = b.user_id")
+  items = sql_select("SELECT b.*, u.name FROM bugs b LEFT JOIN users u ON u.id = b.user_id ORDER BY b.id DESC")
   return items
 
 def report_bug(date,title,description,priority,user_id):
@@ -37,3 +37,11 @@ def edit_bug(id):
 
 def bug_update(date,title,description,priority,user_id,id):
   sql_write("UPDATE bugs SET created_on=%s, title=%s, description=%s, priority=%s, user_id=%s WHERE id=%s", [date,title,description,priority,user_id,id])
+
+def user_bug_count():
+  count = sql_select("SELECT u.name, COUNT(*) AS bug_count FROM bugs b INNER JOIN users u ON u.id = b.user_id GROUP BY b.user_id, u.name;")
+  return count
+
+def total_bug_count():
+  count = sql_select("SELECT COUNT(b.id)  FROM bugs b;")
+  return count

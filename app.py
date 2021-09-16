@@ -3,7 +3,7 @@ import os
 import psycopg2
 import bcrypt
 
-from models.query import sign_up_user, check_email, get_password_hash, all_bugs, get_user_name, get_user_id, user_by_id, report_bug, edit_bug, bug_update
+from models.query import sign_up_user, check_email, get_password_hash, all_bugs, get_user_name, get_user_id, user_by_id, report_bug, edit_bug, bug_update, user_bug_count
 from datetime import date  
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=bugger")
@@ -11,6 +11,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "pretend key for testing only")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
+
 
 @app.route('/edit_action', methods=['POST'])
 def edit_action():
@@ -99,7 +100,7 @@ def login_action():
         valid = bcrypt.checkpw(password.encode(), password_hash.encode())
         if valid:
             session['email_address'] = email
-            return redirect('/bugs_list') 
+            return redirect('/dash') 
         else:
             incorrect_login = True
             return render_template('login.html', incorrect_login=incorrect_login)    
@@ -142,10 +143,32 @@ def bugs_list():
         first_name = 'Guest'
     return render_template('bugsList.html', bugs=bugs, name=first_name)
 
+@app.route('/dash')
+def dash():
+    bug_count = user_bug_count()
+    user = []
+    count = []
+    for bug in bug_count:
+        user.append(bug[0])
+        count.append(bug[1])
+
+    if session:
+        email = session['email_address']
+        full_name = get_user_name(email)[0][0]
+        first_name = full_name.split()[0]
+        print(first_name)
+    else:
+        first_name = 'Guest'
+
+
+    return render_template('dash.html', bug_count=bug_count, name=first_name)
+
 @app.route('/')
 def main():
     return render_template('index.html')
 
+    
 
-if __name__ == "__main__":
-    app.run(debug=True)
+  
+
+app.run(debug=True)

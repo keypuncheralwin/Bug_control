@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../static/css/bugList.css">
     <link rel="stylesheet" href="../static/css/forms.css">
     <link rel="stylesheet" href="../static/css/media.css">
+    <link rel="stylesheet" href="../static/css/chart.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,14 @@
 
 <body>
     <div class="wrapper">
-        <h3 id="hiddenMenu">Open Menu</h2>
+        
+        <div class="burger">
+            <!-- hamburger menu taken from codepen
+            https://codepen.io/Sangsom/details/dKOzQy -->
+            <a class="menu-btn">
+              <span></span>
+            </a>
+          </div>
         {% block content %}
         <div class="contentOne">
             
@@ -36,6 +44,10 @@
         </div>
         {% endblock %}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../static/scripts/script.js"></script>
+    
+    
 </body>
 
 </html>

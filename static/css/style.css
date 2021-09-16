@@ -37,6 +37,8 @@ a{
     justify-content: center;
     align-items: center;
     border-right: #d94881 5px solid;
+    
+    
 
 }
 
@@ -51,11 +53,21 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    
 }
 
 .containerOne{
     margin: 0 10%;
+    
 }
+
+.containerDash{
+    height: 100vh;
+    margin: 0 10%;
+    
+}
+
 
 
 #logo {
@@ -90,6 +102,13 @@ a{
     font-size: 50px;
     font-weight: 600;
     color: #d94881;
+}
+
+.white{
+    font-family: 'Urbanist', sans-serif;
+    font-size: 50px;
+    font-weight: 600;
+    color: white;
 }
 
 .mainButtons {

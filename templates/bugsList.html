@@ -8,26 +8,27 @@
         <h2 id="subtitle">Let's squash some bugs!</h2>
         {% else %}
         <h1 id="title">Hello Guest.</h1>
-        <h2 id="subtitle">As a guest you cannot make changes to the databse</h2>
+        <h2 id="subtitle">Sign up to add/edit bugs!</h2>
         {% endif %}
         
         <div class="buttonCollection">
+            <a class="mainButtons" href="/dash">Dashboard</a>
             <a class="mainButtons linkSelect" href="/bugs_list">Current Bugs</a>
-            <a class="mainButtons" href="/bugs_list">Dashboard</a>
             <a class="mainButtons" href="/report">Report a bug</a>
             <a class="mainButtons" href="/logout">Logout</a>
         </div>
     </div>
 </div>
 <div class="contentTwo background">
-    <div class="container">
+    
+    <div class="containerList">
         <h2 class="standardFont center">Look at all those bugs...</h2>
         <div class="bugList">
             <div class="label">ID</div>
             <div class="label">Last updated on</div>
             <div class="label">Title</div>
             <div class="label">Description</div>
-            <div class="label">Status</div>
+            <div class="label">Priority</div>
             <div class="label">Last updated by</div>
             <div class="label">Update</div>
             {% for bug in bugs %}
