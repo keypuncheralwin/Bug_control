@@ -9,6 +9,7 @@ body {
     margin: 0 auto;
     color: white;
     font-family: 'Urbanist', sans-serif;
+    background: rgb(59, 59, 57);
     
 }
 
@@ -49,7 +50,6 @@ a{
     -o-background-size: cover;
     background-size: cover;
     grid-area: contentTwo;
-    background-color: burlywood;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,7 +65,13 @@ a{
 .containerDash{
     height: 100vh;
     margin: 0 10%;
+    padding-top: 10%;
     
+}
+
+.containerBug{
+    
+    margin: 10% 10%;
 }
 
 

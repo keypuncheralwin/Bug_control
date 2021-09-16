@@ -154,6 +154,10 @@
 
     }
 
+    .containerBug{
+       height: 100vh; 
+    }
+
     /* .ontainerDash{
         height: 100vh;
     } */

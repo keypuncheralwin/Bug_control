@@ -3,7 +3,7 @@
 
 .bugList{
     display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr 2fr 0.5fr 1.2fr 1fr;
+    grid-template-columns: 0.5fr 1fr 2fr 0.5fr 1fr 1.2fr 1fr;
     margin: 0 2%;
     padding-bottom: 50px;
 

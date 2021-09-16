@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="contentOne">
+    <div class="containerOne">
+        <img id="logo" src="../static/images/bug.png" alt="logo">
+        {% if not name == 'Guest' %}
+        <h1 id="title">Hey {{name}}.</h1>
+        <h2 id="subtitle">Let's squash some bugs!</h2>
+        {% else %}
+        <h1 id="title">Hello Guest.</h1>
+        <h2 id="subtitle">Sign up to add/edit bugs!</h2>
+        {% endif %}
+        
+        <div class="buttonCollection">
+            <a class="mainButtons" href="/dash">Dashboard</a>
+            <a class="mainButtons" href="/bugs_list">Current Bugs</a>
+            {% if not name == 'Guest' %}
+            <a class="mainButtons" href="/report">Report a bug</a>
+            {% endif %}
+            <a class="mainButtons linkSelect" href="/archives">Archives</a>
+            <a class="mainButtons" href="/logout">Logout</a>
+        </div>
+    </div>
+</div>
+<div class="contentTwo background">
+    
+    <div class="containerList">
+        <h2 class="standardFont center">Let's work on making this bigger!</h2>
+        <div class="bugList">
+            <div class="label">ID</div>
+            <div class="label">Archived on</div>
+            <div class="label">Title</div>
+            <div class="label">Description</div>
+            <div class="label">Archived by</div>
+            <div class="label">Bug Resolution</div>
+            <div class="label">View Archived Bug</div>
+
+            {% for archive in archives %}
+            <div class="label">{{archive[0]}}</div>
+            <div class="label">{{archive[1]}}</div>
+            <div class="label">{{archive[2]}}</div>
+            {% set x = archive[3].split()[:10] %}
+            <div class="label">{{' '.join(x)}}...</div>
+            <div class="label">{{archive[6]}}</div>
+            <div class="label">{{archive[4]}}</div>
+            <div class="label"><a href="/">View</a></div>
+            
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

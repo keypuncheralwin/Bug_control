@@ -14,7 +14,10 @@
         <div class="buttonCollection">
             <a class="mainButtons linkSelect" href="/dash">Dashboard</a>
             <a class="mainButtons" href="/bugs_list">Current Bugs</a>
+            {% if not name == 'Guest' %}
             <a class="mainButtons" href="/report">Report a bug</a>
+            {% endif %}
+            <a class="mainButtons" href="/archives">Archives</a>
             <a class="mainButtons" href="/logout">Logout</a>
         </div>
     </div>
@@ -31,8 +34,8 @@
         
         <div class="chart-container">
             <canvas id="chart"></canvas>
-            
         </div>
+</div>
 </div>
 
 {% endblock %}

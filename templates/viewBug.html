@@ -11,15 +11,18 @@
         <h2 id="subtitle">Sign up to add/edit bugs!</h2>
         {% endif %}
         <div class="buttonCollection">
+            <a class="mainButtons" href="/dash">Dashboard</a>
             <a class="mainButtons" href="/bugs_list">Current Bugs</a>
-            <a class="mainButtons" href="/bugs_list">Dashboard</a>
+            {% if not name == 'Guest' %}
             <a class="mainButtons" href="/report">Report a bug</a>
+            {% endif %}
+            <a class="mainButtons" href="/archives">Archives</a>
             <a class="mainButtons" href="/logout">Logout</a>
         </div>
     </div>
 </div>
 <div class="contentTwo background">
-    <div class="container">
+    <div class="containerBug">
         {% if not name == 'Guest' %}
         <form action="/edit/{{id}}">
             {% else %}
@@ -28,17 +31,24 @@
                 <label class="standardFont" for="title">Title</label>
                 <input type="text" name="title" value="{{title}}" readonly>
 
+                <label class="standardFont" for="user">Created by</label>
+                <input type="text" name="user" value="{{created_by}}" readonly>
+
                 <label class="standardFont" for="description">Description</label>
                 <textarea readonly type="text" rows="4" name="description">{{description}}</textarea>
 
                 <label class="standardFont" for="priority">Priority</label>
                 <input type="text" name="title" value="{{priority}}" readonly>
 
-                <label class="standardFont" for="Date">Last updated On</label>
-                <input type="text" name="title" value="{{date}}" readonly>
+                {% if not updated_on == False %}
+                <label class="standardFont" for="Date">Last Updated On</label>
+                <input type="date" name="date" value="{{updated_on}}" readonly>
 
-                <label class="standardFont" for="user">Last updated by</label>
-                <input type="text" name="user" value="{{user_name}}" readonly>
+                <label class="standardFont" for="user">Last Updated by</label>
+                <input type="text" name="user" value="{{updated_user}}" readonly>
+                {% endif %}
+
+
 
                 {% if not name == 'Guest' %}
                 <input class="standardFont" type="submit" value="Edit this bug">

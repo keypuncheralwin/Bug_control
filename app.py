@@ -3,7 +3,7 @@ import os
 import psycopg2
 import bcrypt
 
-from models.query import sign_up_user, check_email, get_password_hash, all_bugs, get_user_name, get_user_id, user_by_id, report_bug, edit_bug, bug_update, user_bug_count
+from models.query import sign_up_user, check_email, get_password_hash, all_bugs, get_user_name, get_user_id, user_by_id, report_bug, edit_bug, bug_update, user_bug_count, update_archive, all_archive, delete_bug, name_by_id
 from datetime import date  
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=bugger")
@@ -12,55 +12,109 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "pretend key for testing only")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-
-@app.route('/edit_action', methods=['POST'])
-def edit_action():
-    email = session['email_address']
-    user_id = get_user_id(email)[0][0]
-    date = request.form.get('date')
-    priority = request.form.get('priority')
-    title = request.form.get('title')
-    description = request.form.get('description')
-    id = request.form.get('bug_id')
-    bug_update(date,title,description,priority,user_id,id)
-    return redirect('/bugs_list')
-
-    
-
-@app.route('/view/<id>')
-def view(id):
-    user_name = user_by_id(id)[0][0]
-    print(user_name)
-    results = edit_bug(id)[0]
-    title = results[2]
-    description = results[3]
-    priority = results[4]
-    date = results[1]
+@app.route('/archives')
+def archives():
+    archive_all = all_archive()
     if session:
         email = session['email_address']
         full_name = get_user_name(email)[0][0]
         first_name = full_name.split()[0]
     else:
         first_name = 'Guest'
-    return render_template('viewBug.html', date=date, priority=priority, description=description, title=title, id=id, name=first_name, user_name=user_name)
+    return render_template('archives.html', archives=archive_all, name=first_name)
 
-@app.route('/edit/<id>')
-def edit(id):
+@app.route('/archive_bug_action', methods=['POST'])
+def archive_bug_action():
+    today = date.today()
+    email = session['email_address']
+    user_id = get_user_id(email)[0][0]
+    full_name = get_user_name(email)[0][0]
+    created_on = today
+    resolved = request.form.get('resolved')
+    title = request.form.get('title')
+    description = request.form.get('description')
+    id = request.form.get('bug_id')
+    update_archive(created_on,title,description,resolved,user_id,full_name)
+    delete_bug(id)
+    return redirect('/archives')
+
+@app.route('/edit_action', methods=['POST'])
+def edit_action():
+    email = session['email_address']
+    updated_by = get_user_id(email)[0][0]
+    today = date.today()
+    updated_on = today
+    priority = request.form.get('priority')
+    title = request.form.get('title')
+    description = request.form.get('description')
+    id = request.form.get('bug_id')
+    bug_update(updated_on,title,description,priority,updated_by,id)
+    return redirect('/bugs_list')    
+
+@app.route('/archive_bug/<id>')
+def archive(id):
+    user_name = user_by_id(id)[0][0]
+    results = edit_bug(id)[0]
+    title = results[2]
+    description = results[3]
+    date = results[1]
+    email = session['email_address']
+    full_name = get_user_name(email)[0][0]
+    first_name = full_name.split()[0]
+
+    return render_template('archiveBug.html', date=date, description=description, title=title, id=id, name=first_name, user_name=user_name)
+    
+
+@app.route('/view/<id>')
+def view(id):
+    created_by = user_by_id(id)[0][0] #we're getting the  user who created the post by the bug_id
     results = edit_bug(id)[0]
     title = results[2]
     description = results[3]
     priority = results[4]
-    today = date.today()
+    date = results[1]
+    if results[6]:
+        updated_on = results[6]
+        updated_by = results[7]
+        updated_user = name_by_id(updated_by)[0][0]
+    else:
+        updated_on = False
+        updated_user = False
+        
+    if session:
+        email = session['email_address']
+        full_name = get_user_name(email)[0][0]
+        first_name = full_name.split()[0]
+    else:
+        first_name = 'Guest'
+    return render_template('viewBug.html', date=date, priority=priority, description=description, title=title, id=id, name=first_name, created_by=created_by, updated_on=updated_on, updated_user=updated_user)
+
+@app.route('/edit/<id>')
+def edit(id):
+    created_by = user_by_id(id)[0][0]
+    results = edit_bug(id)[0]
+    title = results[2]
+    description = results[3]
+    priority = results[4]
+    date = results[1]
+    if results[6]:
+        updated_on = results[6]
+        updated_by = results[7]
+        updated_user = name_by_id(updated_by)[0][0]
+    else:
+        updated_on = False
+        updated_user = False
+    
     email = session['email_address']
     full_name = get_user_name(email)[0][0]
     first_name = full_name.split()[0]
     
     
-    return render_template('editBug.html', today=today, priority=priority, description=description, title=title, name=first_name, id=id)
+    return render_template('editBug.html', date=date, priority=priority, description=description, title=title, name=first_name, id=id, created_by=created_by, updated_on=updated_on, updated_user=updated_user)
 
 
 @app.route('/report_action', methods=['POST'])
-def test_action():
+def report_action():
     date = request.form.get('date')
     priority = request.form.get('priority')
     title = request.form.get('title')
@@ -68,6 +122,7 @@ def test_action():
     if session:
         email = session['email_address']
         user_id = get_user_id(email)[0][0]
+        full_name = get_user_name(email)[0][0]
         print(user_id)
         report_bug(date,title,description,priority,user_id)
     return redirect('/bugs_list')

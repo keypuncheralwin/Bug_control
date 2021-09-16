@@ -14,7 +14,10 @@
         <div class="buttonCollection">
             <a class="mainButtons" href="/dash">Dashboard</a>
             <a class="mainButtons linkSelect" href="/bugs_list">Current Bugs</a>
+            {% if not name == 'Guest' %}
             <a class="mainButtons" href="/report">Report a bug</a>
+            {% endif %}
+            <a class="mainButtons" href="/archives">Archives</a>
             <a class="mainButtons" href="/logout">Logout</a>
         </div>
     </div>
@@ -25,23 +28,24 @@
         <h2 class="standardFont center">Look at all those bugs...</h2>
         <div class="bugList">
             <div class="label">ID</div>
-            <div class="label">Last updated on</div>
             <div class="label">Title</div>
             <div class="label">Description</div>
             <div class="label">Priority</div>
-            <div class="label">Last updated by</div>
+            <div class="label">Created on</div>
+            <div class="label">Created by</div>
             <div class="label">Update</div>
             {% for bug in bugs %}
             <div class="label">{{bug[0]}}</div>
-            <div class="label">{{bug[1]}}</div>
             <div class="label">{{bug[2]}}</div>
             {% set x = bug[3].split()[:10] %}
             <div class="label">{{' '.join(x)}}...</div>
             <div class="label">{{bug[4]}}</div>
-            <div class="label">{{bug[6]}}</div>
+            <div class="label">{{bug[1]}}</div>
+            <div class="label">{{bug[8]}}</div>
+
             {% if not name == 'Guest' %}
             <div class="label"><a href="/view/{{bug[0]}}">View</a><br><a href="/edit/{{bug[0]}}">Edit</a><br><a
-                    href="/">Archive</a></div>
+                    href="/archive_bug/{{bug[0]}}">Archive</a></div>
             {% else %}
             <div class="label"><a href="/view/{{bug[0]}}">View</a></div>
             {% endif %}
