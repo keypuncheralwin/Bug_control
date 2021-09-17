@@ -3,7 +3,7 @@ import os
 import psycopg2
 import bcrypt
 
-from models.query import sign_up_user, check_email, get_password_hash, all_bugs, get_user_name, get_user_id, user_by_id, report_bug, edit_bug, bug_update, user_bug_count, update_archive, all_archive, delete_bug, name_by_id,count_priority, total_bug_count, total_resolved, total_bug_reported, archive_by_id
+from models.query import sign_up_user, check_email, get_password_hash, all_bugs, get_user_name, get_user_id, user_by_id, report_bug, edit_bug, bug_update, user_bug_count, update_archive, all_archive, delete_bug, name_by_id,count_priority, total_bug_count, total_resolved, total_bug_reported, archive_by_id, total_archive
 from datetime import date  
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=bugger")
@@ -218,6 +218,7 @@ def dash():
     urgent_bugs = priority_count[2]
     total_bugs = total_bug_count()[0][0]
     total_resolved_bugs = total_resolved()[0][0]
+    archive_count = total_archive()[0][0]
 
     if session:
         email = session['email_address']
@@ -230,7 +231,7 @@ def dash():
         bugs_reported = 0
 
 
-    return render_template('dash.html', bug_count=bug_count, name=first_name, priority_count=priority_count, urgent_bugs=urgent_bugs, total_bugs =total_bugs, total_resolved=total_resolved_bugs, bugs_reported=bugs_reported )
+    return render_template('dash.html', bug_count=bug_count, name=first_name, priority_count=priority_count, urgent_bugs=urgent_bugs, total_bugs =total_bugs, total_resolved=total_resolved_bugs, bugs_reported=bugs_reported, archive_count=archive_count )
 
 @app.route('/')
 def main():

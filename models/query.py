@@ -75,3 +75,7 @@ def total_bug_reported(user_id):
 def archive_by_id(id):
   items = sql_select("SELECT * FROM archive WHERE id=%s", [id])
   return items 
+
+def total_archive():
+  items = sql_select("SELECT COUNT(id) FROM archive")
+  return items 

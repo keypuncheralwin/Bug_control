@@ -85,8 +85,8 @@ var myChart = new Chart(ctx, {
         datasets: [{    
             data: priority_count, // Specify the data values array
           
-            borderColor: ['#135390', '#D1913E', '#A92420'], // Add custom color border 
-            backgroundColor: ['#135390', '#D1913E', '#A92420'], // Add custom color background (Points and Fill)
+            borderColor: ['#2EB5E0', '#F8D210', '#F51720'], // Add custom color border 
+            backgroundColor: ['#2EB5E0', '#F8D210', '#F51720'], // Add custom color background (Points and Fill)
 
             borderWidth: 1 // Specify bar border width
         }]},         
