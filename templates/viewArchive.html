@@ -23,41 +23,24 @@
 </div>
 <div class="contentTwo background">
     <div class="containerBug">
-        {% if not name == 'Guest' %}
-        <form action="/edit/{{id}}">
-            {% else %}
-            <form action="/bugs_list">
-                {% endif %}
+        <form action="/archives">
                 <label class="standardFont" for="title">Title</label>
                 <input type="text" name="title" value="{{title}}" readonly>
 
-                <label class="standardFont" for="Date">Created On</label>
-                <input type="date" name="date" value="{{date}}" readonly>
+                <label class="standardFont" for="Date">Archived On</label>
+                <input type="date" name="date" value="{{archived_on}}" readonly>
 
-                <label class="standardFont" for="user">Created by</label>
-                <input type="text" name="user" value="{{created_by}}" readonly>
+                <label class="standardFont" for="user">Archived by</label>
+                <input type="text" name="user" value="{{archived_by}}" readonly>
 
                 <label class="standardFont" for="description">Description</label>
                 <textarea readonly type="text" rows="4" name="description">{{description}}</textarea>
 
-                <label class="standardFont" for="priority">Priority</label>
-                <input type="text" name="title" value="{{priority}}" readonly>
+                <label class="standardFont" for="user">Was the bug resolved?</label>
+                <input type="text" name="resolved" value="{{resolve}}" readonly>
 
-                {% if not updated_on == False %}
-                <label class="standardFont" for="Date">Last Updated On</label>
-                <input type="date" name="date" value="{{updated_on}}" readonly>
-
-                <label class="standardFont" for="user">Last Updated by</label>
-                <input type="text" name="user" value="{{updated_user}}" readonly>
-                {% endif %}
-
-
-
-                {% if not name == 'Guest' %}
-                <input class="standardFont" type="submit" value="Edit this bug">
-                {% else %}
+                
                 <input class="standardFont" type="submit" value="Back">
-                {% endif %}
             </form>
 
 

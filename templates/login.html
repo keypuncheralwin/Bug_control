@@ -14,6 +14,9 @@
 </div>
 <div class="contentTwo background">
     <div class="container">
+        {% if incorrect_login %}
+    <p class="incorrect">Incorrect login details, try again...</p>
+    {% endif %}
         <form action="/login_action" method="POST">
             <label class="standardFont" for="email">Email</label>
             <input type="text" id="email" name="email" placeholder="Your email address..">

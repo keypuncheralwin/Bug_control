@@ -27,23 +27,25 @@
     <div class="containerList">
         <h2 class="standardFont center">Let's work on making this bigger!</h2>
         <div class="bugList">
-            <div class="label">ID</div>
-            <div class="label">Archived on</div>
-            <div class="label">Title</div>
-            <div class="label">Description</div>
-            <div class="label">Archived by</div>
-            <div class="label">Bug Resolution</div>
-            <div class="label">View Archived Bug</div>
+            <div class="label colomnHeader">ID</div>
+            <div class="label colomnHeader">Title</div>
+            <div class="label colomnHeader">Description</div>
+            <div class="label colomnHeader">Bug Resolution</div>
+            <div class="label colomnHeader">Archived on</div>
+            <div class="label colomnHeader">Archived by</div>
+            
+            <div class="label colomnHeader">View Archived Bug</div>
 
             {% for archive in archives %}
             <div class="label">{{archive[0]}}</div>
-            <div class="label">{{archive[1]}}</div>
+            
             <div class="label">{{archive[2]}}</div>
             {% set x = archive[3].split()[:10] %}
             <div class="label">{{' '.join(x)}}...</div>
-            <div class="label">{{archive[6]}}</div>
             <div class="label">{{archive[4]}}</div>
-            <div class="label"><a href="/">View</a></div>
+            <div class="label">{{archive[1]}}</div>
+            <div class="label">{{archive[6]}}</div>
+            <div class="label"><a class="linkButton" href="/view_archive/{{archive[0]}}">View</a></div>
             
             
             {% endfor %}

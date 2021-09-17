@@ -3,7 +3,7 @@ import os
 import psycopg2
 import bcrypt
 
-from models.query import sign_up_user, check_email, get_password_hash, all_bugs, get_user_name, get_user_id, user_by_id, report_bug, edit_bug, bug_update, user_bug_count, update_archive, all_archive, delete_bug, name_by_id
+from models.query import sign_up_user, check_email, get_password_hash, all_bugs, get_user_name, get_user_id, user_by_id, report_bug, edit_bug, bug_update, user_bug_count, update_archive, all_archive, delete_bug, name_by_id,count_priority, total_bug_count, total_resolved, total_bug_reported, archive_by_id
 from datetime import date  
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=bugger")
@@ -11,6 +11,23 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "pretend key for testing only")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
+
+@app.route('/view_archive/<id>')
+def view_archive(id):
+    results = archive_by_id(id)[0]
+    archived_on = results[1]
+    title = results[2]
+    description = results[3]
+    resolve = results[4]
+    archived_by = results[6]
+    if session:
+        email = session['email_address']
+        full_name = get_user_name(email)[0][0]
+        first_name = full_name.split()[0]
+    else:
+        first_name = 'Guest'
+
+    return render_template('viewArchive.html', name=first_name, archived_on=archived_on, title=title, description=description, resolve=resolve, archived_by=archived_by)
 
 @app.route('/archives')
 def archives():
@@ -201,22 +218,23 @@ def bugs_list():
 @app.route('/dash')
 def dash():
     bug_count = user_bug_count()
-    user = []
-    count = []
-    for bug in bug_count:
-        user.append(bug[0])
-        count.append(bug[1])
+    priority_count = count_priority()[0]
+    urgent_bugs = priority_count[2]
+    total_bugs = total_bug_count()[0][0]
+    total_resolved_bugs = total_resolved()[0][0]
 
     if session:
         email = session['email_address']
         full_name = get_user_name(email)[0][0]
         first_name = full_name.split()[0]
-        print(first_name)
+        current_user_id = get_user_id(email)[0][0]
+        bugs_reported = total_bug_reported(current_user_id)[0][0]
     else:
         first_name = 'Guest'
+        bugs_reported = 0
 
 
-    return render_template('dash.html', bug_count=bug_count, name=first_name)
+    return render_template('dash.html', bug_count=bug_count, name=first_name, priority_count=priority_count, urgent_bugs=urgent_bugs, total_bugs =total_bugs, total_resolved=total_resolved_bugs, bugs_reported=bugs_reported )
 
 @app.route('/')
 def main():

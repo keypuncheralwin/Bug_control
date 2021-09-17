@@ -35,3 +35,8 @@ input[type=submit]:hover {
   background-color: #d94881;
 }
 
+.incorrect{
+  color: white;
+  text-align: center;
+  font-style: italic;
+}

@@ -49,13 +49,29 @@ def user_bug_count():
   count = sql_select("SELECT u.name, COUNT(*) AS bug_count FROM bugs b INNER JOIN users u ON u.id = b.user_id GROUP BY b.user_id, u.name;")
   return count
 
+def count_priority():
+  count = sql_select("SELECT COUNT(CASE WHEN priority = 'low' THEN 1 END) AS low, COUNT(CASE WHEN priority = 'Moderate' THEN 1 END) AS Moderate, COUNT(CASE WHEN priority = 'High' THEN 1 END) AS High FROM bugs;")
+  return count
+
 def total_bug_count():
   count = sql_select("SELECT COUNT(b.id)  FROM bugs b;")
+  return count
+
+def total_resolved():
+  count = sql_select("SELECT COUNT(id) From archive where resolved = 'True';")
   return count
 
 def update_archive(date,title,description,resolved,user_id,archived_by):
   sql_write("INSERT INTO archive (archived_on, title, description, resolved, user_id, archived_by) VALUES (%s, %s, %s, %s, %s, %s)", [date,title,description,resolved,user_id,archived_by])
 
 def all_archive():
-  items = sql_select("SELECT * from archive")
+  items = sql_select("SELECT * FROM archive")
   return items    
+
+def total_bug_reported(user_id):
+  count = sql_select("SELECT COUNT(id) FROM bugs WHERE user_id=%s", [user_id])
+  return count
+
+def archive_by_id(id):
+  items = sql_select("SELECT * FROM archive WHERE id=%s", [id])
+  return items 

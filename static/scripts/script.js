@@ -1,23 +1,7 @@
-const burger = document.querySelector(".menu-btn");
-const menu = document.querySelector(".buttonCollection");
-
-const bugList = document.querySelectorAll(".label")
-
-burger.addEventListener("click", function(){
-    burger.classList.toggle("menu-btn_active");
-    menu.classList.toggle("showMenu")
-});
-
-
-for (bug of bugList){
-    if (bug.innerHTML === 'High'){
-        console.log(bug.innerHTML)
-    }
-    
-}
-
 
 //-----------Bar Chart JS -------------------------------------------------//
+//----Some elements taken from--- https://codepen.io/chartjs/pen/YVWZbz ---//
+
 
 let bug_count = JSON.parse(document.getElementById("bug_count").textContent)
 
@@ -86,6 +70,30 @@ var data = {
     options: options,
     data: data
   });
-//-----------Bar Chart JS -------------------------------------------------//  
 
+//-----------Doughnut Chart JS -------------------------------------------------//  
+
+let priority_count = JSON.parse(document.getElementById("priority_count").textContent)
+console.log(priority_count)
+
+var ctx = document.getElementById("chart2").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ["Low",	"Moderate",	"High"],
+        datasets: [{    
+            data: priority_count, // Specify the data values array
+          
+            borderColor: ['#135390', '#D1913E', '#A92420'], // Add custom color border 
+            backgroundColor: ['#135390', '#D1913E', '#A92420'], // Add custom color background (Points and Fill)
+
+            borderWidth: 1 // Specify bar border width
+        }]},         
+    options: {
+      responsive: true, // Instruct chart js to respond nicely.
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      
+    }
+});
 

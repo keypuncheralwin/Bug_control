@@ -3,8 +3,8 @@
 <div class="contentOne">
     <div class="containerOne">
         <img id="logo" src="../static/images/bug.png" alt="logo">
-                <h1 id="title">Bug Control.</h1>
-                <h3 id="subtitle">A simple bug tracking app</h3>
+        <h1 id="title">Bug Control.</h1>
+        <h3 id="subtitle">A simple bug tracking app</h3>
         <div class="buttonCollection">
             <a class="mainButtons linkSelect" href="/sign">Sign Up</a>
             <a class="mainButtons" href="/login">Login</a>
@@ -15,20 +15,25 @@
 <div class="contentTwo background">
     <div class="container">
         <form action="/sign_action" method="POST">
+
+            {% if incorrect_password %}
+            <p class="incorrect">Your passwords don't match, try again...</p>
+            {% endif %}
+
             <label class="standardFont" for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Enter your full name..">
 
             <label class="standardFont" for="email">Email</label>
             <input type="text" id="email" name="email" placeholder="Enter your email address..">
-        
+
             <label class="standardFont" for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter a password..">
 
             <label class="standardFont" for="password">Confirm Password</label>
             <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password..">
-          
+
             <input class="standardFont" type="submit" value="Sign Up">
-          </form>
+        </form>
 
 
     </div>

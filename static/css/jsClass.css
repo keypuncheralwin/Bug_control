@@ -1,0 +1,21 @@
+
+
+.highColor{
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #a92520;
+}
+
+.moderateColor{
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #D1913E;
+}
+
+.lowColor{
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #135390;
+}
+
+

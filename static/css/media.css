@@ -29,8 +29,11 @@
     }
 
     .contentTwo {
+        display: flex;
+    justify-content: center;
+    align-items: center; 
         height: 100vh;
-        /* overflow: auto; */
+        overflow-y:visible;
     }
 
     .containerOne {
@@ -49,10 +52,17 @@
     }
 
     .containerDash{
+        margin: 0;
         padding: 20px;
         height: 100vh;
         width: 100vw;
+        text-align: center;
         
+    }
+
+    .containerBug{
+        margin: 5%;
+       height: 100vh; 
     }
 
     #title {
@@ -150,23 +160,13 @@
     .showMenu {
         display: flex;
         flex-direction: column;
-        padding-top: 30%;
+        padding-top: 20%;
 
     }
 
-    .containerBug{
-       height: 100vh; 
-    }
+    
 
-    /* .ontainerDash{
-        height: 100vh;
-    } */
-
-    /* canvas {
-        
-        width: 500px;
-      } */
-      
+    
 
 
 

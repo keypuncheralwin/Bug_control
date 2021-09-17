@@ -27,27 +27,27 @@
     <div class="containerList">
         <h2 class="standardFont center">Look at all those bugs...</h2>
         <div class="bugList">
-            <div class="label">ID</div>
-            <div class="label">Title</div>
-            <div class="label">Description</div>
-            <div class="label">Priority</div>
-            <div class="label">Created on</div>
-            <div class="label">Created by</div>
-            <div class="label">Update</div>
+            <div class="label colomnHeader">ID</div>
+            <div class="label colomnHeader">Title</div>
+            <div class="label colomnHeader">Description</div>
+            <div class="label colomnHeader">Priority</div>
+            <div class="label colomnHeader">Created on</div>
+            <div class="label colomnHeader">Created by</div>
+            <div class="label colomnHeader">Update</div>
             {% for bug in bugs %}
-            <div class="label">{{bug[0]}}</div>
-            <div class="label">{{bug[2]}}</div>
+            <div class="label box">{{bug[0]}}</div>
+            <div class="label box">{{bug[2]}}</div>
             {% set x = bug[3].split()[:10] %}
-            <div class="label">{{' '.join(x)}}...</div>
-            <div class="label">{{bug[4]}}</div>
-            <div class="label">{{bug[1]}}</div>
-            <div class="label">{{bug[8]}}</div>
+            <div class="label box">{{' '.join(x)}}...</div>
+            <div class="label box"><span class="priority">{{bug[4]}}</span></div>
+            <div class="label box">{{bug[1]}}</div>
+            <div class="label box">{{bug[8]}}</div>
 
             {% if not name == 'Guest' %}
-            <div class="label"><a href="/view/{{bug[0]}}">View</a><br><a href="/edit/{{bug[0]}}">Edit</a><br><a
-                    href="/archive_bug/{{bug[0]}}">Archive</a></div>
+            <div class="label links"><a class="linkButton" href="/view/{{bug[0]}}">View</a><a class="linkButton" href="/edit/{{bug[0]}}">Edit</a>
+                <a class="linkButton" href="/archive_bug/{{bug[0]}}">Archive</a></div>
             {% else %}
-            <div class="label"><a href="/view/{{bug[0]}}">View</a></div>
+            <div class="label"><a class="linkButton" href="/view/{{bug[0]}}">View</a></div>
             {% endif %}
             
             {% endfor %}

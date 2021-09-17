@@ -87,3 +87,9 @@ UPDATE bugs SET created_by WHERE user_id = 4 VALUES 'Matthew Perry';
 UPDATE bugs
 SET created_by = 'Robert Tucker'
 WHERE user_id = 2;
+
+SELECT
+    COUNT(CASE WHEN priority = 'low' THEN 1 END) AS low,
+    COUNT(CASE WHEN priority = 'Moderate' THEN 1 END) AS Moderate,
+    COUNT(CASE WHEN priority = 'High' THEN 1 END) AS High
+FROM bugs;

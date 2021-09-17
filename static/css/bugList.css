@@ -3,18 +3,24 @@
 
 .bugList{
     display: grid;
-    grid-template-columns: 0.5fr 1fr 2fr 0.5fr 1fr 1.2fr 1fr;
+    grid-template-columns: 0.5fr 1fr 2fr 0.5fr 1fr 1.2fr 0.5fr;
     margin: 0 2%;
     padding-bottom: 50px;
+    
 
 }
 
 
 .label{
 padding: 10px;
-border: white 2px solid;
+/* border: white 2px solid; */
+background-color: rgba(0, 0, 0, 0.64);
 
-/* text-align: left; */
+}
+
+
+.colomnHeader{
+    background-color: #d94881;
 }
 
 .center{
@@ -29,6 +35,25 @@ border: white 2px solid;
     border: none;
 }
 
+.linkButton{
+    padding: 2px 4px;
+    border-radius: 2px;
+    margin-right: 2px;
+    height: 25px;
+    background-color: #d94882d7;
+}
 
+.linkButton:hover{
+    background-color: white;
+    color: black;
+}
 
+.links{
+    display: flex;
+    flex-direction: row;
+}
 
+.box:hover{
+    background-color: rgba(117, 177, 242, 0.482);
+    border-radius: 5px;
+}
