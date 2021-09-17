@@ -175,9 +175,9 @@ def login_action():
             return redirect('/dash') 
         else:
             incorrect_login = True
-            return render_template('login.html', incorrect_login=incorrect_login)    
+            return render_template('index.html', incorrect_login=incorrect_login)    
     
-    return render_template('login.html')
+    return render_template('index.html')
 
 
 @app.route('/sign_action', methods=['POST'])
@@ -198,10 +198,6 @@ def signup_action():
 @app.route('/sign')
 def sign():
     return render_template('sign.html')
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
 @app.route('/bugs_list')
 def bugs_list():

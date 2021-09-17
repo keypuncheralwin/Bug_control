@@ -40,3 +40,9 @@ input[type=submit]:hover {
   text-align: center;
   font-style: italic;
 }
+
+.formBackground{
+  padding: 15px;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.825);
+}

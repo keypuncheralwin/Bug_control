@@ -33,14 +33,26 @@
                 <h3 id="subtitle">A simple bug tracking app</h3>
                 <div class="buttonCollection">
                     <a class="mainButtons" href="/sign">Sign Up</a>
-                    <a class="mainButtons" href="/login">Login</a>
                     <a class="mainButtons" href="/dash">Guest</a>
                 </div>
             </div>
         </div>
         <div class="contentTwo">
-            <div class="container">
-
+            <div class="container formBackground">
+                {% if incorrect_login %}
+            <p class="incorrect">Incorrect login details, try again...</p>
+            {% endif %}
+                <form action="/login_action" method="POST">
+                    <label class="standardFont" for="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="Your email address..">
+                
+                    <label class="standardFont" for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Your password..">
+                  
+                    <input class="standardFont" type="submit" value="Login">
+                  </form>
+        
+        
             </div>
         </div>
         {% endblock %}
