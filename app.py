@@ -29,7 +29,8 @@ def view_archive(id):
 
     return render_template('viewArchive.html', name=first_name, archived_on=archived_on, title=title, description=description, resolve=resolve, archived_by=archived_by)
 
-@app.route('/archives')
+#shows all archives in table
+@app.route('/archives') 
 def archives():
     archive_all = all_archive()
     if session:
@@ -40,13 +41,15 @@ def archives():
         first_name = 'Guest'
     return render_template('archives.html', archives=archive_all, name=first_name)
 
-@app.route('/archive_bug_action', methods=['POST'])
+
+#archiving a specific bug, gets the details of the bug by it's id and deletes it from the bugs databse and inserts it into the archive database
+@app.route('/archive_bug_action', methods=['POST']) 
 def archive_bug_action():
-    today = date.today()
-    email = session['email_address']
-    user_id = get_user_id(email)[0][0]
-    full_name = get_user_name(email)[0][0]
-    created_on = today
+    today = date.today() 
+    email = session['email_address'] 
+    user_id = get_user_id(email)[0][0] 
+    full_name = get_user_name(email)[0][0] 
+    created_on = today 
     resolved = request.form.get('resolved')
     title = request.form.get('title')
     description = request.form.get('description')
@@ -55,6 +58,7 @@ def archive_bug_action():
     delete_bug(id)
     return redirect('/archives')
 
+#updating a specific bug, gets the details of the bug by it's id and updates it
 @app.route('/edit_action', methods=['POST'])
 def edit_action():
     email = session['email_address']
@@ -68,6 +72,7 @@ def edit_action():
     bug_update(updated_on,title,description,priority,updated_by,id)
     return redirect('/bugs_list')    
 
+#rendering the archive page
 @app.route('/archive_bug/<id>')
 def archive(id):
     user_name = user_by_id(id)[0][0]
@@ -81,10 +86,10 @@ def archive(id):
 
     return render_template('archiveBug.html', date=date, description=description, title=title, id=id, name=first_name, user_name=user_name)
     
-
+#renders a read only version of a specific bug by id
 @app.route('/view/<id>')
 def view(id):
-    created_by = user_by_id(id)[0][0] #we're getting the  user who created the post by the bug_id
+    created_by = user_by_id(id)[0][0] 
     results = edit_bug(id)[0]
     title = results[2]
     description = results[3]
@@ -105,6 +110,7 @@ def view(id):
     else:
         first_name = 'Guest'
     return render_template('viewBug.html', date=date, priority=priority, description=description, title=title, id=id, name=first_name, created_by=created_by, updated_on=updated_on, updated_user=updated_user)
+
 
 @app.route('/edit/<id>')
 def edit(id):

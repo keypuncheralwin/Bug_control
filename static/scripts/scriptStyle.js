@@ -3,12 +3,15 @@ const menu = document.querySelector(".buttonCollection");
 
 const priorityList = document.querySelectorAll(".priority")
 
+//toggle mobile menu on/off
+
 burger.addEventListener("click", function(){
     burger.classList.toggle("menu-btn_active");
     menu.classList.toggle("showMenu")
 });
 
 
+//highlighting priority status with the appropriate color
 
 for (priority of priorityList){
     if (priority.innerHTML === 'High'){

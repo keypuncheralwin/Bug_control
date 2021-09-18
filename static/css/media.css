@@ -85,6 +85,8 @@
         font-size: 30px;
     }
 
+    /* burger menu animation taken from codepen */
+    
     .burger {
         display: block;
         z-index: 1;
@@ -142,6 +144,8 @@
     .menu-btn_active span:after {
         transform: rotate(-45deg);
     }
+
+    /* ^^^ burger menu animation taken from codepen  ^^^*/
 
     .buttonCollection {
         display: none;

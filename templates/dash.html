@@ -24,31 +24,34 @@
 </div>
 <div class="contentTwo background">
     <div id="bug_count" style="display: none;">{{bug_count|tojson}}</div>
+    <!-- These variables are being passed into the javascript file for chart creation -->
     <div id="priority_count" style="display: none;">{{priority_count|tojson}}</div>
+    <!-- These variables are being passed into the javascript file for chart creation -->
 
-    
+
 
     <div class="containerDash">
         {% if not name == 'Guest' %}
-    <h2><span class="white">{{name}}! You've reported </span><span class="standardFont"> {{bugs_reported}}</span><span class="white">
-            bug(s) to date!</span></h2>
-    {% endif %}
+        <h2><span class="white">{{name}}! You've reported </span><span class="standardFont">
+                {{bugs_reported}}</span><span class="white">
+                bug(s) to date!</span></h2>
+        {% endif %}
 
-    <h2><span class="white">Total Active Bugs: </span><span class="standardFont"> {{total_bugs}}</span></h2>
+        <h2><span class="white">Total Active Bugs: </span><span class="standardFont"> {{total_bugs}}</span></h2>
 
-    <div class="chart-wrapper">
-        <div class="chart-container">
-            <canvas id="chart"></canvas>
+        <div class="chart-wrapper">
+            <div class="chart-container">
+                <canvas id="chart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="chart2"></canvas>
+            </div>
         </div>
-        <div class="chart-container">
-        <canvas id="chart2"></canvas>
-    </div>
-</div>
 
 
-        
-        <h2><span class="white">There are </span><span class="standardFont"> {{urgent_bugs}}</span><span class="white"> bugs that
-                needs urgent fixing!</span></h2>
+
+        <h2><span class="white">There are </span><span class="standardFont"> {{urgent_bugs}}</span><span class="white">
+            bugs that needs urgent fixing!</span></h2>
 
 
         <h2><span class="white">Total Bugs Resolved: </span><span class="standardFont"> {{total_resolved}}</span></h2>
