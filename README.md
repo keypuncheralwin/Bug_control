@@ -7,7 +7,7 @@ A simple bug tracking application made using flask python, html, css and javascr
 ## How it works and who is it for?
 This app is designed for hobbyist developers or developers working in small teams to help keep track of bugs in their projects. 
 
-Once the user has logged in it takes them to a dashboad which gives them a personalised overview of the current bugs and the users who reported them. Form there the user is free to view the current bugs in the system, update it, mark it as resolved and archive it. They can also report a new bug.
+Once the user has logged in it takes them to a dashboad which gives them a personalised overview of the current bugs and the users who reported them. From there the user is free to view the current bugs in the system, update it, mark it as resolved and archive it. They can also report a new bug.
 
 ## How to set this up locally on your machine
 The backend of this app was made using python and flask so you'll need to have python installed to run this locally.
